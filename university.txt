@@ -6,4 +6,10 @@
 
 4. SELECT * FROM `courses` WHERE `period` LIKE 'I semestre' AND `year` like '1';
 
-4. SELECT * FROM `exams` WHERE `date` LIKE '2020-06-20' and `hour` > '14:00:00';
+5. SELECT * FROM `exams` WHERE `date` LIKE '2020-06-20' and `hour` > '14:00:00';
+
+6. SELECT * FROM `degrees` WHERE `level` LIKE 'magistrale';
+
+7. SELECT * FROM `departments`;
+
+8. SELECT * FROM `teachers` WHERE `phone` IS NOT null;
