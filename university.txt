@@ -1,0 +1,9 @@
+1. SELECT * FROM `students` WHERE `date_of_birth` like '1990%';
+
+2. SELECT * FROM `courses` WHERE `cfu` > '10';
+
+3. SELECT * FROM `students` WHERE `date_of_birth` < '1992-12-21';
+
+4. SELECT * FROM `courses` WHERE `period` LIKE 'I semestre' AND `year` like '1';
+
+4. SELECT * FROM `exams` WHERE `date` LIKE '2020-06-20' and `hour` > '14:00:00';
