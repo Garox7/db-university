@@ -1,7 +1,4 @@
-1.  SELECT COUNT(`students`.`id`) AS 'numero_iscritti', `degrees`.`name` AS 'nome_corso'
+1.  SELECT `students`.`id` AS 'id_studente', `degrees`.`name` AS 'nome_corso' 
     FROM `students`
-    INNER JOIN `degrees`
-    ON `degrees`.`id` = `students`.`degree_id`
+    INNER JOIN `degrees` ON `degrees`.`id` = `students`.`degree_id`
     WHERE `degrees`.`name` = 'corso di laurea in economia';
-
-2.
