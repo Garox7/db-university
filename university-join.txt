@@ -3,3 +3,44 @@
     INNER JOIN `degrees`
     ON `degrees`.`id` = `students`.`degree_id`
     WHERE `degrees`.`name` = 'corso di laurea in economia';
+
+2.  SELECT `degrees`.*, `departments`.`name`
+    FROM `degrees`
+    JOIN `departments`
+    ON `departments`.`id` = `degrees`.`department_id`
+    WHERE `departments`.`name` = 'Dipartimento di neuroscienze' && `degrees`.`level` = 'magistrale';
+
+3.  SELECT `teachers`.*, `courses`.`name` AS 'corso'
+    FROM `teachers`
+    JOIN `course_teacher` ON `teachers`.`id` = `course_teacher`.`teacher_id`
+    JOIN `courses` ON `course_teacher`.`course_id` = `courses`.`id`
+    WHERE `teachers`.`name` = 'Fulvio Amato' || `teachers`.`id` = '44';
+
+4.  SELECT `students`.`surname`, `students`.`name` , `degrees`.*, `departments`.`name`
+    FROM `students`
+    INNER JOIN `degrees` ON `students`.`degree_id` = `degrees`.`id`
+    INNER JOIN `departments` ON `degrees`.`department_id` = `departments`.`id`
+    ORDER BY `students`.`surname`, `students`.`name` ASC;
+
+5.  SELECT `degrees`.`name` AS 'corso_di_laurea', `courses`.`name` AS 'insegnamento', CONCAT(`teachers`.`name`, `teachers`.`surname`) AS 'docente'
+    FROM `degrees`
+    JOIN `courses` ON `degrees`.`id` = `courses`.`degree_id`
+    JOIN `course_teacher` ON `courses`.`id` = `course_teacher`.`course_id`
+    JOIN `teachers` ON `course_teacher`.`teacher_id` = `teachers`.`id`;
+
+6.  SELECT DISTINCT `teachers`.*, `departments`.`name`
+    FROM `departments`
+    JOIN `degrees` ON `departments`.`id` = `degrees`.`department_id`
+    OIN `courses` ON `degrees`.`id` = `courses`.`degree_id`
+    JOIN `course_teacher` on `courses`.`id` = `course_teacher`.`course_id`
+    JOIN `teachers` ON `course_teacher`.`teacher_id` = `teachers`.`id`
+    WHERE `departments`.`name` = 'Dipartimento di Matematica'
+    ORDER BY `teachers`.`name` ASC;
+
+7.  SELECT `students`.`id`, `students`.`name`, `students`.`surname`, `courses`.`name`, COUNT(`exam_student`.`vote`) AS 'numero_tentativi', MAX(`exam_student`.`vote`) AS 'voto_superamento'
+    FROM `students`
+    INNER JOIN `exam_student` ON `students`.`id` = `exam_student`.`student_id`
+    INNER JOIN `exams` ON `exams`.`id` = `exam_student`.`exam_id`
+    INNER JOIN `courses` ON `courses`.`id` = `exams`.`course_id`
+    GROUP BY `students`.`id`, `courses`.`id`
+    HAVING `voto_superamento` >= 18;
